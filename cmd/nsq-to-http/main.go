@@ -17,7 +17,7 @@ import (
 	"time"
 
 	"github.com/segmentio/conf"
-	nsq "github.com/segmentio/nsq-go"
+	nsq "github.com/golib/nsq-go"
 	"github.com/segmentio/timers"
 )
 
@@ -37,7 +37,7 @@ func main() {
 	}{
 		Bind:        ":3000",
 		ContentType: "application/octet-stream",
-		UserAgent:   "nsq-to-http (github.com/segmentio/nsq-go)",
+		UserAgent:   "nsq-to-http (github.com/golib/nsq-go)",
 		MaxInFlight: 100,
 		HTTPTimeout: 2 * time.Second,
 	}

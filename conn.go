@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	DefaultUserAgent       = "github.com/segmentio/nsq-go"
+	DefaultUserAgent       = "github.com/golib/nsq-go"
 	DefaultMaxConcurrency  = 1
 	DefaultMaxInFlight     = 1
 	DefaultDialTimeout     = 5 * time.Second

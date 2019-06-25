@@ -1,25 +1,25 @@
 version: 2
 jobs:
   test:
-    working_directory: /go/src/github.com/segmentio/nsq-go
+    working_directory: /go/src/github.com/golib/nsq-go
     docker:
-      - image: segment/circleci-golang:1.11.0
+      - image: circleci/golang:1.12
         environment:
           GO111MODULE: 'on'
 
       - image: consul:latest
         command: agent -server -dev -log-level debug
 
-      - image: nsqio/nsq:v0.3.8
+      - image: nsqio/nsq:v1.1.0
         command: /nsqlookupd -broadcast-address localhost:4160 -tcp-address 0.0.0.0:4160 -http-address 0.0.0.0:4161
 
-      - image: nsqio/nsq:v0.3.8
+      - image: nsqio/nsq:v1.1.0
         command: /nsqlookupd -broadcast-address localhost:4162 -tcp-address 0.0.0.0:4162 -http-address 0.0.0.0:4163
 
-      - image: nsqio/nsq:v0.3.8
+      - image: nsqio/nsq:v1.1.0
         command: /nsqlookupd -broadcast-address localhost:4164 -tcp-address 0.0.0.0:4164 -http-address 0.0.0.0:4165
 
-      - image: nsqio/nsq:v0.3.8
+      - image: nsqio/nsq:v1.1.0
         command: >
           /nsqd
           -broadcast-address localhost:4150
@@ -29,7 +29,7 @@ jobs:
           -lookupd-tcp-address localhost:4162
           -lookupd-tcp-address localhost:4164
 
-      - image: nsqio/nsq:v0.3.8
+      - image: nsqio/nsq:v1.1.0
         command: >
           /nsqd
           -broadcast-address localhost:4152
@@ -39,7 +39,7 @@ jobs:
           -lookupd-tcp-address localhost:4162
           -lookupd-tcp-address localhost:4164
 
-      - image: nsqio/nsq:v0.3.8
+      - image: nsqio/nsq:v1.1.0
         command: >
           /nsqd
           -broadcast-address localhost:4154
@@ -55,9 +55,9 @@ jobs:
       - run: go test -v -race ./...
 
   build:
-    working_directory: /go/src/github.com/segmentio/nsq-go
+    working_directory: /go/src/github.com/golib/nsq-go
     docker:
-      - image: segment/circleci-golang:1.11.0
+      - image: circleci/golang:1.12
         environment:
           GO111MODULE: 'on'
           CGO_ENABLED: '0'

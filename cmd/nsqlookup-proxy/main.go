@@ -12,8 +12,8 @@ import (
 	_ "github.com/segmentio/events/ecslogs"
 	"github.com/segmentio/events/httpevents"
 	_ "github.com/segmentio/events/text"
-	nsq "github.com/segmentio/nsq-go"
-	"github.com/segmentio/nsq-go/nsqlookup"
+	nsq "github.com/golib/nsq-go"
+	"github.com/golib/nsq-go/nsqlookup"
 	"github.com/segmentio/services"
 )
 
@@ -31,7 +31,7 @@ func main() {
 		CacheTimeout: 1 * time.Minute,
 		ZoneAwareAgents: []string{
 			nsq.DefaultUserAgent,
-			"nsq-to-http (github.com/segmentio/nsq-go)",
+			"nsq-to-http (github.com/golib/nsq-go)",
 		},
 	}
 

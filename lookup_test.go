@@ -8,14 +8,14 @@ import (
 var (
 	nsqlookup = []string{
 		"localhost:4161", // nsqlookup-1
-		"localhost:4163", // nsqlookup-2
-		"localhost:4165", // nsqlookup-3
+		// "localhost:4163", // nsqlookup-2
+		// "localhost:4165", // nsqlookup-3
 	}
 
 	nsqd = []string{
 		"localhost:4151", // nsqd-1
-		"localhost:4153", // nsqd-2
-		"localhost:4155", // nsqd-3
+		// "localhost:4153", // nsqd-2
+		// "localhost:4155", // nsqd-3
 	}
 )
 
@@ -55,7 +55,7 @@ func TestLookup(t *testing.T) {
 		}
 	}
 
-	if len(res.Producers) != 3 {
+	if len(res.Producers) != len(nsqd) {
 		t.Error("not enough producers reported by the lookup operation")
 
 		for _, p := range res.Producers {
