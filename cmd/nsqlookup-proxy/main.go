@@ -7,14 +7,13 @@ import (
 	"strings"
 	"time"
 
+	nsq "github.com/golib/nsq-go"
+	"github.com/golib/nsq-go/nsqlookup"
 	"github.com/segmentio/conf"
 	"github.com/segmentio/events"
 	_ "github.com/segmentio/events/ecslogs"
 	"github.com/segmentio/events/httpevents"
 	_ "github.com/segmentio/events/text"
-	nsq "github.com/golib/nsq-go"
-	"github.com/golib/nsq-go/nsqlookup"
-	"github.com/segmentio/services"
 )
 
 func main() {
@@ -54,7 +53,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	var registry services.Registry
+	var registry nsqlookup.Registry
 	protocol, address, nsqlookupd := splitAddressService(args[0])
 
 	switch protocol {
@@ -97,7 +96,7 @@ func main() {
 		Topology:   topology,
 		Nsqlookupd: nsqlookupd,
 
-		Registry: &services.Cache{
+		Registry: &nsqlookup.Cache{
 			Registry: registry,
 			MinTTL:   config.CacheTimeout,
 			MaxTTL:   config.CacheTimeout,
